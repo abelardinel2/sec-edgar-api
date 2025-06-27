@@ -6,7 +6,9 @@ from datetime import datetime
 import uvicorn
 
 app = FastAPI()
-dl = Downloader(f"CompanyName={os.getenv('COMPANY_NAME')}; EmailAddress={os.getenv('SEC_EMAIL')}")
+dl = Downloader(
+    company_name=os.getenv("COMPANY_NAME"),
+    email_address=os.getenv("SEC_EMAIL")
 
 @app.get("/api/v1/insider-trades")
 def get_insider_trades(ticker: str = Query(..., min_length=1)):
