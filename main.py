@@ -9,6 +9,7 @@ app = FastAPI()
 dl = Downloader(
     company_name=os.getenv("COMPANY_NAME"),
     email_address=os.getenv("SEC_EMAIL")
+)
 
 @app.get("/api/v1/insider-trades")
 def get_insider_trades(ticker: str = Query(..., min_length=1)):
