@@ -6,7 +6,7 @@ from datetime import datetime
 import uvicorn
 
 app = FastAPI()
-dl = Downloader()
+dl = Downloader("Oria Dawn Analytics", os.getenv("SEC_EMAIL"))
 
 @app.get("/api/v1/insider-trades")
 def get_insider_trades(ticker: str = Query(..., min_length=1)):
