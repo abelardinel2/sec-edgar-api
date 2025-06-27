@@ -1,1 +1,4 @@
-fastapi\nuvicorn\nsec_edgar_downloader\npython-telegram-bot\n
+fastapi
+uvicorn
+sec_edgar_downloader
+python-telegram-bot
