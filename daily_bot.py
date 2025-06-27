@@ -1,15 +1,13 @@
-
 import os
-from datetime import datetime
-import telegram
+from telegram import Bot
 
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+company = os.getenv("COMPANY_NAME")
+email = os.getenv("SEC_EMAIL")
+bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
+chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
-bot = telegram.Bot(token=TELEGRAM_BOT_TOKEN)
+bot = Bot(token=bot_token)
 
-# Example summary generation
-today = datetime.today().strftime("%Y-%m-%d")
-summary = f"📊 *Insider Flow Summary – {today}*"
-
-bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=summary, parse_mode="Markdown")
+message = f"✅ *Daily Bot Report*\nCompany: {company}\nEmail: {email}"
+bot.send_message(chat_id=chat_id, text=message, parse_mode='Markdown')
+print("Message sent!")
