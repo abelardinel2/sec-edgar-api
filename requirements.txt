@@ -1,5 +1,4 @@
-
 fastapi
 uvicorn
 sec_edgar_downloader
-requests
+python-telegram-bot
