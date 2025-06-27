@@ -1,6 +1,7 @@
 name: Daily Bot
 
 on:
+  workflow_dispatch:   # 👈 THIS enables the manual run button!
   schedule:
     - cron: '0 12 * * *'
 
