@@ -1,12 +1,11 @@
-
 import os
-from sec_edgar_downloader import Downloader
+from telegram_bot import send_telegram_message
 
-company_name = os.getenv("COMPANY_NAME")
-email = os.getenv("SEC_EMAIL")
+def main():
+    # Example logic
+    filings_downloaded = 1295
+    print(f"Downloaded filings: {filings_downloaded}")
+    send_telegram_message(f"✅ Download complete! Filings downloaded: {filings_downloaded}")
 
-dl = Downloader(company_name, email)
-
-# Get Form 4 filings for AAPL
-filings = dl.get("4", "AAPL")
-print(f"Downloaded filings: {filings}")
+if __name__ == "__main__":
+    main()

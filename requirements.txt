@@ -1,4 +1,4 @@
 fastapi
 uvicorn
-sec_edgar_downloader
 requests
+sec_edgar_downloader
