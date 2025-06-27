@@ -1,39 +1,15 @@
 
 import os
-from sec_edgar_downloader import Downloader
-from telegram_bot import send_telegram_message
 from datetime import datetime
+import telegram
 
-company_name = os.getenv("COMPANY_NAME")
-email = os.getenv("SEC_EMAIL")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
-dl = Downloader(company_name, email)
+bot = telegram.Bot(token=TELEGRAM_BOT_TOKEN)
 
-# Example tickers
-tickers = ["AAPL", "META", "TSLA", "MSFT"]
+# Example summary generation
+today = datetime.today().strftime("%Y-%m-%d")
+summary = f"📊 *Insider Flow Summary – {today}*"
 
-summaries = []
-total_filings = 0
-
-for ticker in tickers:
-    filings = dl.get("4", ticker)
-    summaries.append(f"• {ticker}: {len(filings)} Form 4s")
-    total_filings += len(filings)
-
-# Simple bias logic (placeholder)
-bias = "👀 Neutral"
-if total_filings > 20:
-    bias = "💣 Heavy Insider Activity"
-
-today = datetime.now().strftime("%Y-%m-%d")
-
-message = (
-    f"📊 *Insider Flow Summary – {today}*
-
-"
-    + "\n".join(summaries) + "\n\n"
-    f"🧮 *Total Form 4s:* {total_filings}\n"
-    f"{bias}"
-)
-
-send_telegram_message(message, parse_mode="Markdown")
+bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=summary, parse_mode="Markdown")
